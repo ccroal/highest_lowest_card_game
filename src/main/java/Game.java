@@ -47,7 +47,7 @@ public class Game {
     }
 
 
-    public ArrayList findWinner() {
+    public ArrayList<Player> findWinner() {
         ArrayList<Player> winners = new ArrayList();
         ArrayList<Player> others = new ArrayList();
         Player winningPlayer = this.players.get(0);
@@ -56,21 +56,21 @@ public class Game {
         for (int i = 1; i < this.players.size(); i++) {
             if (this.players.get(i).cardNumberValue() > winningPlayer.cardNumberValue()) {
                 winningPlayer = this.players.get(i);
-//            } else {
-//                others.add(this.players.get(i));
+            } else {
+                others.add(this.players.get(i));
             }
         }
         winners.add(winningPlayer);
 
-//        Player firstWinner = winners.get(0);
-//
-//        for(Player player : others){
-//            if (player.cardNumberValue() == firstWinner.cardNumberValue()) {
-//                Player otherwinner = player;
-//                winners.add(otherwinner);
-//            }
-//
-//        }
+        Player firstWinner = winners.get(0);
+
+        for(Player player : others){
+            if (player.cardNumberValue() == firstWinner.cardNumberValue()) {
+                Player otherwinner = player;
+                winners.add(otherwinner);
+            }
+
+        }
 
 
         return winners;
@@ -91,11 +91,18 @@ public class Game {
 
 
 
-    public Player playHand(ArrayList players){
+    public Player playHand(ArrayList<Player> players){
         this.gameDeck.createDeck();
+        clearPlayerCards();
         dealCards(players);
         ArrayList<Player> winners = findWinner();
         return declareWinner(winners);
+    }
+
+    private void clearPlayerCards() {
+        for (Player player : this.players){
+            player.clearHand();
+        }
     }
 
 }

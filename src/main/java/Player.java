@@ -25,8 +25,10 @@ public class Player {
 
 
     public int cardNumberValue() {
-        Card playerCard = this.playerHand.remove(0);
-        return playerCard.getRank().getValue();
+        return this.playerHand.get(0).getRank().getValue();
+    }
 
+    public void clearHand() {
+        this.playerHand.clear();
     }
 }
