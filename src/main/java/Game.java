@@ -34,7 +34,7 @@ public class Game {
     }
 
     public Player getPlayers(int index) {
-        return this.players.remove(index);
+        return this.players.get(index);
     }
 
     public void dealCards(ArrayList<Player> players) {
@@ -56,8 +56,8 @@ public class Game {
         for (int i = 1; i < this.players.size(); i++) {
             if (this.players.get(i).cardNumberValue() > winningPlayer.cardNumberValue()) {
                 winningPlayer = this.players.get(i);
-            } else {
-                others.add(this.players.get(i));
+//            } else {
+//                others.add(this.players.get(i));
             }
         }
         winners.add(winningPlayer);
